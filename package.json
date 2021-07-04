@@ -7,9 +7,19 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "format": "prettier --ignore-unknown --write .",
+    "prepare": "husky install"
   },
   "private": true,
+  "prettier": {
+    "singleQuote": true,
+    "printWidth": 100
+  },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown",
+    "**/*.ts": "eslint --fix"
+  },
   "dependencies": {
     "@angular/animations": "~12.1.1",
     "@angular/cdk": "~12.1.1",
@@ -40,12 +50,16 @@
     "@typescript-eslint/eslint-plugin": "4.23.0",
     "@typescript-eslint/parser": "4.23.0",
     "eslint": "^7.26.0",
+    "eslint-config-prettier": "^8.3.0",
+    "husky": "^7.0.0",
     "jasmine-core": "~3.7.0",
     "karma": "~6.3.0",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage": "~2.0.3",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.5.0",
+    "lint-staged": "^11.0.0",
+    "prettier": "2.3.2",
     "typescript": "~4.3.2"
   }
 }
