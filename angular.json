@@ -3,7 +3,8 @@
   "version": 1,
   "cli": {
     "analytics": false,
-    "packageManager": "yarn"
+    "packageManager": "yarn",
+    "defaultCollection": "@angular-eslint/schematics"
   },
   "newProjectRoot": "projects",
   "projects": {
@@ -108,6 +109,15 @@
               "src/styles.scss"
             ],
             "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
           }
         }
       }
