@@ -1,5 +1,23 @@
 <mat-toolbar>
   <span>Picture Flow</span>
+  <span class="separator"></span>
+  <ng-container *ngIf="user | async as currentUser">
+    <button
+      type="button"
+      class="user-icon-button"
+      [matMenuTriggerFor]="userMenu"
+      i18n-aria-label="@@toggleUserMenu"
+      aria-label="Toggle user menu"
+    >
+      <img class="user-icon" [src]="currentUser.photoURL" [attr.alt]="currentUser.displayName" />
+      <mat-icon>expand_more</mat-icon>
+    </button>
+    <mat-menu #userMenu="matMenu">
+      <button mat-menu-item (click)="signOut()" i18n="@@signOutMessage">
+        Sign out as {{ currentUser.displayName }}
+      </button>
+    </mat-menu>
+  </ng-container>
 </mat-toolbar>
 
 <router-outlet></router-outlet>

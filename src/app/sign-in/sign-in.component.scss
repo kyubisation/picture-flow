@@ -1,0 +1,28 @@
+:host {
+  display: flex;
+  justify-content: center;
+}
+
+.sign-in-box {
+  display: inline-flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  padding: 1rem;
+  text-align: center;
+}
+
+.sign-in-button {
+  color: rgba(0, 0, 0, 0.87);
+  background-color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.sign-in-button-alignment {
+  display: inline-flex;
+  align-items: center;
+}
+
+#facebook-icon,
+#twitter-icon {
+  padding: 0 0.5rem;
+}

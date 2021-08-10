@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
-// import firebase from 'firebase/app';
+import { Router } from '@angular/router';
+import firebase from 'firebase/app';
+import { Observable } from 'rxjs';
+
+import { AuthService } from './core/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -9,9 +12,12 @@ import { AngularFireAuth } from '@angular/fire/auth';
 })
 export class AppComponent {
   title = 'picture-flow';
+  user: Observable<firebase.User | null> = this._auth.user;
 
-  constructor(public auth: AngularFireAuth) {
-    // this.auth.signInWithRedirect()
-    // new firebase.auth.
+  constructor(private _auth: AuthService, private _router: Router) {}
+
+  async signOut() {
+    await this._auth.signOut();
+    await this._router.navigate(['/sign-in']);
   }
 }
