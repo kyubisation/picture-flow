@@ -20,9 +20,8 @@
 .sign-in-button-alignment {
   display: inline-flex;
   align-items: center;
-}
 
-#facebook-icon,
-#twitter-icon {
-  padding: 0 0.5rem;
+  mat-icon {
+    margin-right: 0.5rem;
+  }
 }

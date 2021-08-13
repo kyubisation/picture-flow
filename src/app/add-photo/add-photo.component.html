@@ -15,10 +15,10 @@
   />
   <button type="button" mat-raised-button color="primary" (click)="photoInput.click()">
     <mat-icon inline>add_a_photo</mat-icon>&nbsp;
-    <ng-container *ngIf="!form.get('file')!.value" i18n="@@addPhotoButton"
+    <ng-container *ngIf="!form.get('file')!.value" i18n="@@addPhotoSelectPhotoButton"
       >Select a photo</ng-container
     >
-    <ng-container *ngIf="form.get('file')!.value" i18n="@@addPhotoButton"
+    <ng-container *ngIf="form.get('file')!.value" i18n="@@addPhotoChangePhotoButton"
       >Change selected photo</ng-container
     >
   </button>
@@ -57,7 +57,7 @@
     </mat-form-field>
 
     <button type="submit" mat-raised-button color="primary" i18n="@@addPhotoSubmitButton">
-      Add photo
+      Save photo
     </button>
   </ng-container>
 </form>

@@ -1,209 +1,31 @@
 <div class="sign-in-box mat-elevation-z8">
-  <h1>Sign in with your identity provider</h1>
+  <h1 i18n="@@signInHeading">Sign in</h1>
 
   <button mat-raised-button type="button" class="sign-in-button" (click)="signInWithGoogle()">
     <span class="sign-in-button-alignment">
-      <svg
-        width="36px"
-        height="36px"
-        viewBox="0 0 46 46"
-        version="1.1"
-        xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink"
-        xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"
-      >
-        <!-- Generator: Sketch 3.3.3 (12081) - http://www.bohemiancoding.com/sketch -->
-        <title>Google Icon</title>
-        <defs>
-          <filter
-            x="-50%"
-            y="-50%"
-            width="200%"
-            height="200%"
-            filterUnits="objectBoundingBox"
-            id="filter-1"
-          >
-            <feOffset dx="0" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
-            <feGaussianBlur
-              stdDeviation="0.5"
-              in="shadowOffsetOuter1"
-              result="shadowBlurOuter1"
-            ></feGaussianBlur>
-            <feColorMatrix
-              values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.168 0"
-              in="shadowBlurOuter1"
-              type="matrix"
-              result="shadowMatrixOuter1"
-            ></feColorMatrix>
-            <feOffset dx="0" dy="0" in="SourceAlpha" result="shadowOffsetOuter2"></feOffset>
-            <feGaussianBlur
-              stdDeviation="0.5"
-              in="shadowOffsetOuter2"
-              result="shadowBlurOuter2"
-            ></feGaussianBlur>
-            <feColorMatrix
-              values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.084 0"
-              in="shadowBlurOuter2"
-              type="matrix"
-              result="shadowMatrixOuter2"
-            ></feColorMatrix>
-            <feMerge>
-              <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
-              <feMergeNode in="shadowMatrixOuter2"></feMergeNode>
-              <feMergeNode in="SourceGraphic"></feMergeNode>
-            </feMerge>
-          </filter>
-          <rect id="path-2" x="0" y="0" width="40" height="40" rx="2"></rect>
-        </defs>
-        <g
-          id="Google-Button"
-          stroke="none"
-          stroke-width="1"
-          fill="none"
-          fill-rule="evenodd"
-          sketch:type="MSPage"
-        >
-          <g
-            id="9-PATCH"
-            sketch:type="MSArtboardGroup"
-            transform="translate(-608.000000, -160.000000)"
-          ></g>
-          <g
-            id="btn_google_light_normal"
-            sketch:type="MSArtboardGroup"
-            transform="translate(-1.000000, -1.000000)"
-          >
-            <g
-              id="button"
-              sketch:type="MSLayerGroup"
-              transform="translate(4.000000, 4.000000)"
-              filter="url(#filter-1)"
-            >
-              <g id="button-bg">
-                <!-- Suppress background in order to avoid border
-                <use
-                  fill="#FFFFFF"
-                  fill-rule="evenodd"
-                  sketch:type="MSShapeGroup"
-                  xlink:href="#path-2"
-                ></use>
-                -->
-                <use fill="none" xlink:href="#path-2"></use>
-                <use fill="none" xlink:href="#path-2"></use>
-                <use fill="none" xlink:href="#path-2"></use>
-              </g>
-            </g>
-            <g
-              id="logo_googleg_48dp"
-              sketch:type="MSLayerGroup"
-              transform="translate(15.000000, 15.000000)"
-            >
-              <path
-                d="M17.64,9.20454545 C17.64,8.56636364 17.5827273,7.95272727 17.4763636,7.36363636 L9,7.36363636 L9,10.845 L13.8436364,10.845 C13.635,11.97 13.0009091,12.9231818 12.0477273,13.5613636 L12.0477273,15.8195455 L14.9563636,15.8195455 C16.6581818,14.2527273 17.64,11.9454545 17.64,9.20454545 L17.64,9.20454545 Z"
-                id="Shape"
-                fill="#4285F4"
-                sketch:type="MSShapeGroup"
-              ></path>
-              <path
-                d="M9,18 C11.43,18 13.4672727,17.1940909 14.9563636,15.8195455 L12.0477273,13.5613636 C11.2418182,14.1013636 10.2109091,14.4204545 9,14.4204545 C6.65590909,14.4204545 4.67181818,12.8372727 3.96409091,10.71 L0.957272727,10.71 L0.957272727,13.0418182 C2.43818182,15.9831818 5.48181818,18 9,18 L9,18 Z"
-                id="Shape"
-                fill="#34A853"
-                sketch:type="MSShapeGroup"
-              ></path>
-              <path
-                d="M3.96409091,10.71 C3.78409091,10.17 3.68181818,9.59318182 3.68181818,9 C3.68181818,8.40681818 3.78409091,7.83 3.96409091,7.29 L3.96409091,4.95818182 L0.957272727,4.95818182 C0.347727273,6.17318182 0,7.54772727 0,9 C0,10.4522727 0.347727273,11.8268182 0.957272727,13.0418182 L3.96409091,10.71 L3.96409091,10.71 Z"
-                id="Shape"
-                fill="#FBBC05"
-                sketch:type="MSShapeGroup"
-              ></path>
-              <path
-                d="M9,3.57954545 C10.3213636,3.57954545 11.5077273,4.03363636 12.4404545,4.92545455 L15.0218182,2.34409091 C13.4631818,0.891818182 11.4259091,0 9,0 C5.48181818,0 2.43818182,2.01681818 0.957272727,4.95818182 L3.96409091,7.29 C4.67181818,5.16272727 6.65590909,3.57954545 9,3.57954545 L9,3.57954545 Z"
-                id="Shape"
-                fill="#EA4335"
-                sketch:type="MSShapeGroup"
-              ></path>
-              <path d="M0,0 L18,0 L18,18 L0,18 L0,0 Z" id="Shape" sketch:type="MSShapeGroup"></path>
-            </g>
-            <g id="handles_square" sketch:type="MSLayerGroup"></g>
-          </g>
-        </g>
-      </svg>
+      <mat-icon svgIcon="auth:google"></mat-icon>
       <span i18n="@@signInWithGoogleMessage">Sign in with Google</span>
     </span>
   </button>
 
   <button mat-raised-button type="button" class="sign-in-button" (click)="signInWithFacebook()">
     <span class="sign-in-button-alignment">
-      <svg
-        id="facebook-icon"
-        xmlns:svg="http://www.w3.org/2000/svg"
-        xmlns="http://www.w3.org/2000/svg"
-        version="1.1"
-        xml:space="preserve"
-        width="20px"
-        height="20px"
-        viewBox="0 0 1365.3333 1365.3333"
-        sodipodi:docname="f_logo_RGB-Blue_1024.eps"
-      >
-        <defs id="defs6" />
-        <g
-          id="g10"
-          inkscape:groupmode="layer"
-          inkscape:label="ink_ext_XXXXXX"
-          transform="matrix(1.3333333,0,0,-1.3333333,0,1365.3333)"
-        >
-          <g id="g12" transform="scale(0.1)">
-            <path
-              d="m 10240,5120 c 0,2827.7 -2292.3,5120 -5120,5120 C 2292.3,10240 0,7947.7 0,5120 0,2564.46 1872.31,446.301 4320,62.1992 V 3640 H 3020 v 1480 h 1300 v 1128 c 0,1283.2 764.38,1992 1933.9,1992 560.17,0 1146.1,-100 1146.1,-100 V 6880 H 6754.38 C 6118.35,6880 5920,6485.33 5920,6080.43 V 5120 H 7340 L 7113,3640 H 5920 V 62.1992 C 8367.69,446.301 10240,2564.46 10240,5120"
-              style="fill: #1877f2; fill-opacity: 1; fill-rule: nonzero; stroke: none"
-              id="path14"
-            />
-            <path
-              d="m 7113,3640 227,1480 H 5920 v 960.43 c 0,404.9 198.35,799.57 834.38,799.57 H 7400 v 1260 c 0,0 -585.93,100 -1146.1,100 C 5084.38,8240 4320,7531.2 4320,6248 V 5120 H 3020 V 3640 H 4320 V 62.1992 C 4580.67,21.3008 4847.84,0 5120,0 c 272.16,0 539.33,21.3008 800,62.1992 V 3640 h 1193"
-              style="fill: #ffffff; fill-opacity: 1; fill-rule: nonzero; stroke: none"
-              id="path16"
-            />
-          </g>
-        </g>
-      </svg>
+      <mat-icon svgIcon="auth:facebook"></mat-icon>
       <span i18n="@@signInWithFacebookMessage">Sign in with Facebook</span>
     </span>
   </button>
 
   <button mat-raised-button type="button" class="sign-in-button" (click)="signInWithTwitter()">
     <span class="sign-in-button-alignment">
-      <svg
-        version="1.1"
-        id="twitter-icon"
-        xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink"
-        x="0px"
-        y="0px"
-        width="24px"
-        height="24px"
-        viewBox="0 0 248 204"
-        style="enable-background: new 0 0 248 204"
-        xml:space="preserve"
-      >
-        <style type="text/css">
-          .st0 {
-            fill: #1d9bf0;
-          }
-        </style>
-        <g id="Logo_1_">
-          <path
-            id="white_background"
-            class="st0"
-            d="M221.95,51.29c0.15,2.17,0.15,4.34,0.15,6.53c0,66.73-50.8,143.69-143.69,143.69v-0.04
-		C50.97,201.51,24.1,193.65,1,178.83c3.99,0.48,8,0.72,12.02,0.73c22.74,0.02,44.83-7.61,62.72-21.66
-		c-21.61-0.41-40.56-14.5-47.18-35.07c7.57,1.46,15.37,1.16,22.8-0.87C27.8,117.2,10.85,96.5,10.85,72.46c0-0.22,0-0.43,0-0.64
-		c7.02,3.91,14.88,6.08,22.92,6.32C11.58,63.31,4.74,33.79,18.14,10.71c25.64,31.55,63.47,50.73,104.08,52.76
-		c-4.07-17.54,1.49-35.92,14.61-48.25c20.34-19.12,52.33-18.14,71.45,2.19c11.31-2.23,22.15-6.38,32.07-12.26
-		c-3.77,11.69-11.66,21.62-22.2,27.93c10.01-1.18,19.79-3.86,29-7.95C240.37,35.29,231.83,44.14,221.95,51.29z"
-          />
-        </g>
-      </svg>
+      <mat-icon svgIcon="auth:twitter"></mat-icon>
       <span i18n="@@signInWithTwitterMessage">Sign in with Twitter</span>
+    </span>
+  </button>
+
+  <button mat-raised-button type="button" class="sign-in-button" (click)="signInWithMicrosoft()">
+    <span class="sign-in-button-alignment">
+      <mat-icon svgIcon="auth:microsoft"></mat-icon>
+      <span i18n="@@signInWithMicrosoftMessage">Sign in with Microsoft</span>
     </span>
   </button>
 </div>

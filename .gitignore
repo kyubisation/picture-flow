@@ -47,6 +47,5 @@ Thumbs.db
 # Firebase
 .firebase
 .firebaserc
-firebase.json
 src/environments/environment.ts
 src/environments/environment.prod.ts

@@ -11,10 +11,17 @@ mat-toolbar {
   z-index: 900;
 }
 
+.toolbar-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .separator {
   flex: 1 1 auto;
 }
 
+.home,
 .add-photo {
   margin-right: 1rem;
 
@@ -25,6 +32,7 @@ mat-toolbar {
 
 .user-icon-button {
   display: inline-flex;
+  flex: 0 0 auto;
   align-items: center;
   background: none;
   max-width: none;
