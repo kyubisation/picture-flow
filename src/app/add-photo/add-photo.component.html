@@ -1,0 +1,71 @@
+<h1 i18n="@@addPhotoTitle">Add a photo</h1>
+
+<form
+  [formGroup]="form"
+  (ngSubmit)="addPhoto()"
+  [class.uploading]="(uploadProgress | async) !== undefined"
+>
+  <input
+    #photoInput
+    type="file"
+    accept="image/*"
+    capture="environment"
+    class="photo-input"
+    (change)="extractPhotoContent()"
+  />
+  <button type="button" mat-raised-button color="primary" (click)="photoInput.click()">
+    <mat-icon inline>add_a_photo</mat-icon>&nbsp;
+    <ng-container *ngIf="!form.get('file')!.value" i18n="@@addPhotoButton"
+      >Select a photo</ng-container
+    >
+    <ng-container *ngIf="form.get('file')!.value" i18n="@@addPhotoButton"
+      >Change selected photo</ng-container
+    >
+  </button>
+
+  <ng-container *ngIf="form.get('file')!.value">
+    <img class="preview" [src]="photoContent | async" />
+
+    <mat-form-field>
+      <mat-label i18n="@@addPhotoDescription">Description (optional)</mat-label>
+      <textarea matInput formControlName="description"></textarea>
+      <mat-error
+        *ngIf="form.get('description')!.errors?.maxlength as maxlengthError"
+        i18n="@@addPhotoDescriptionMaxLengthError"
+        >Max length of {{ maxlengthError.requiredLength }} exceeded</mat-error
+      >
+    </mat-form-field>
+
+    <mat-form-field class="example-chip-list">
+      <mat-label i18n="@@addPhotoTags">Tags (optional)</mat-label>
+      <mat-chip-list #chipList aria-label="Photo tags">
+        <mat-chip *ngFor="let tag of tags.controls" removable (removed)="removeTag(tag)">
+          {{ tag.value }}
+          <mat-icon matChipRemove>cancel</mat-icon>
+        </mat-chip>
+        <input
+          i18n-placeholder="@@addPhotoAddTagPlaceholder"
+          placeholder="Add tag..."
+          [disabled]="tags.controls.length >= 5"
+          [matChipInputFor]="chipList"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          matChipInputAddOnBlur
+          (matChipInputTokenEnd)="addTag($event)"
+        />
+      </mat-chip-list>
+      <mat-hint i18n="@@addPhotoMaxTagsHint">Add up to five tags</mat-hint>
+    </mat-form-field>
+
+    <button type="submit" mat-raised-button color="primary" i18n="@@addPhotoSubmitButton">
+      Add photo
+    </button>
+  </ng-container>
+</form>
+
+<mat-progress-bar
+  *ngIf="(uploadProgress | async) !== undefined"
+  mode="determinate"
+  [value]="uploadProgress | async"
+  i18n-aria-label="@@addPhotoProgressAriaLabel"
+  aria-label="Photo is being added"
+></mat-progress-bar>

@@ -1,5 +1,26 @@
+@use '~@angular/material' as mat;
+
+:host {
+  display: block;
+  padding-top: 56px;
+}
+
+mat-toolbar {
+  position: fixed;
+  top: 0;
+  z-index: 900;
+}
+
 .separator {
   flex: 1 1 auto;
+}
+
+.add-photo {
+  margin-right: 1rem;
+
+  &.hide {
+    display: none;
+  }
 }
 
 .user-icon-button {
@@ -12,7 +33,7 @@
   margin: 0;
   border: 0;
   cursor: pointer;
-  color: #69f0ae;
+  color: mat.get-color-from-palette(mat.$green-palette, 'A200');
 }
 
 .user-icon {
@@ -20,4 +41,9 @@
   height: 2.5rem;
   border-radius: 1.25rem;
   overflow: hidden;
+}
+
+main {
+  padding: 1rem;
+  color: white;
 }

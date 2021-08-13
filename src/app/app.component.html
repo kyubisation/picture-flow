@@ -1,7 +1,17 @@
-<mat-toolbar>
+<mat-toolbar color="primary" role="heading">
   <span>Picture Flow</span>
   <span class="separator"></span>
   <ng-container *ngIf="user | async as currentUser">
+    <a
+      mat-mini-fab
+      routerLink="/add-photo"
+      routerLinkActive="hide"
+      class="add-photo"
+      i18n-aria-label="@@addPhotoAriaLabel"
+      aria-label="Add a new photo"
+    >
+      <mat-icon>add_a_photo</mat-icon>
+    </a>
     <button
       type="button"
       class="user-icon-button"
@@ -20,4 +30,6 @@
   </ng-container>
 </mat-toolbar>
 
-<router-outlet></router-outlet>
+<main>
+  <router-outlet></router-outlet>
+</main>

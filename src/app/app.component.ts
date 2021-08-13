@@ -12,7 +12,7 @@ import { AuthService } from './core/auth.service';
 })
 export class AppComponent {
   title = 'picture-flow';
-  user: Observable<firebase.User | null> = this._auth.user;
+  readonly user: Observable<firebase.User | null> = this._auth.user;
 
   constructor(private _auth: AuthService, private _router: Router) {}
 

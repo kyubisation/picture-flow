@@ -1,1 +1,53 @@
-<p>flow works!</p>
+<div *ngFor="let photo of photos | async; trackBy: photoIdentity">
+  <mat-card class="photo-card">
+    <mat-card-header>
+      <div mat-card-avatar>
+        <img class="avatar" [src]="photo.userPhotoURL" />
+      </div>
+      <mat-card-title>{{ photo.userName }}</mat-card-title>
+      <mat-card-subtitle>{{ photo.created | date: 'short' }}</mat-card-subtitle>
+    </mat-card-header>
+    <img
+      mat-card-image
+      class="preview-image"
+      [src]="photo.url"
+      (click)="openAsFullscreen($event)"
+    />
+    <mat-card-content *ngIf="photo.description || photo.tags?.length">
+      <p *ngIf="photo.description">
+        {{ photo.description }}
+      </p>
+      <mat-chip-list
+        *ngIf="photo.tags?.length"
+        i18n-aria-label="@@flowTagAriaLabel"
+        aria-label="Tags for this photo"
+      >
+        <mat-chip *ngFor="let tag of photo.tags">{{ tag }}</mat-chip>
+      </mat-chip-list>
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <button
+        *ngIf="photo.userId === (user | async)?.uid"
+        mat-icon-button
+        color="warn"
+        (click)="deletePhoto(photo)"
+        i18n-aria-label="@@flowDeleteAriaLabel"
+        aria-label="Delete this photo"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        color="primary"
+        i18n-aria-label="@@flowFavoriteAriaLabel"
+        aria-label="Favorite this photo"
+      >
+        <mat-icon>favorite</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+
+<div *ngIf="(photos | async)?.length === 0" class="no-photos" i18n="@@flowNoPhotos">
+  No photos yet. Add one by clicking the camera button above.
+</div>

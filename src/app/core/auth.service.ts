@@ -9,7 +9,7 @@ export type IdentityProviders = 'google' | 'facebook' | 'twitter' | null;
   providedIn: 'root',
 })
 export class AuthService {
-  user: Observable<firebase.User | null> = this._firebaseAuth.user;
+  readonly user: Observable<firebase.User | null> = this._firebaseAuth.user;
 
   get previousIdp(): IdentityProviders {
     return localStorage.getItem('picture-flow-previous-idp') as IdentityProviders;

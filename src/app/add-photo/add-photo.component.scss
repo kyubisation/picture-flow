@@ -1,0 +1,22 @@
+form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+
+  &.uploading {
+    pointer-events: none;
+  }
+}
+
+mat-form-field {
+  margin-bottom: 0.5rem;
+}
+
+.photo-input {
+  display: none;
+}
+
+.preview {
+  max-width: 100%;
+  margin: 1rem 0;
+}
