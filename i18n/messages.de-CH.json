@@ -22,6 +22,7 @@
     "deletePhotoDeleteButton": " Lösche ",
     "flowDeleteAriaLabel": "Das Foti lösche",
     "flowFavoriteAriaLabel": "Foti zu dine Favorite hinzuefüege",
+    "flowUnfavoriteAriaLabel": "Foti vo dine Favorite entfernä",
     "flowNoPhotos": " No kei Fotis. Füeg eis hinzue, indem obe uf de Kamera Button drucksch.\n",
     "deletePhotoRetryOnError": "Neu versueche",
     "signInHeading": "Amälde",

@@ -1,10 +1,15 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import {
+  AngularFirestore,
+  AngularFirestoreCollection,
+  AngularFirestoreDocument,
+} from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 import firebase from 'firebase/app';
-import { from, Observable, Observer, of, Subject, throwError } from 'rxjs';
-import { switchMap, take } from 'rxjs/operators';
+import { forkJoin, from, Observable, Observer, of, Subject, throwError } from 'rxjs';
+import { filter, map, switchMap, take } from 'rxjs/operators';
 
+import { Favorites } from '../models/favorites';
 import { PartialPhoto } from '../models/partial-photo';
 import { Photo } from '../models/photo';
 
@@ -17,7 +22,9 @@ import { randomString } from './random';
 })
 export class PhotoService {
   readonly photos: Observable<Photo[]>;
+  readonly favorites: Observable<Favorites | undefined>;
   private _photoCollection: AngularFirestoreCollection<Photo>;
+  private _favoriteDocument: Observable<AngularFirestoreDocument<Favorites>>;
 
   constructor(
     private _storage: AngularFireStorage,
@@ -28,6 +35,11 @@ export class PhotoService {
       q.orderBy('created', 'desc')
     );
     this.photos = this._photoCollection.valueChanges({ idField: 'id' });
+    this._favoriteDocument = this._auth.user.pipe(
+      filter((u): u is firebase.User => !!u),
+      map((u) => this._firestore.doc<Favorites>(`favorites/${u.uid}`))
+    );
+    this.favorites = this._favoriteDocument.pipe(switchMap((d) => d.valueChanges()));
   }
 
   add(photo: PartialPhoto) {
@@ -51,6 +63,30 @@ export class PhotoService {
   delete(photo: Photo): Observable<void> {
     return from(this._photoCollection.doc(photo.id).delete()).pipe(
       switchMap(() => this._storage.refFromURL(photo.url).delete())
+    );
+  }
+
+  favorite(photo: Photo): Observable<void> {
+    return forkJoin([this._favoriteDocument.pipe(take(1)), this.favorites.pipe(take(1))]).pipe(
+      switchMap(([doc, favorites]) =>
+        doc.set({
+          ...favorites,
+          photoIds: (favorites?.photoIds || [])
+            .concat(photo.id!)
+            .filter((v, i, a) => a.indexOf(v) === i),
+        })
+      )
+    );
+  }
+
+  unfavorite(photo: Photo): Observable<void> {
+    return forkJoin([this._favoriteDocument.pipe(take(1)), this.favorites.pipe(take(1))]).pipe(
+      switchMap(([doc, favorites]) =>
+        doc.set({
+          ...favorites,
+          photoIds: (favorites?.photoIds || []).filter((v) => v !== photo.id),
+        })
+      )
     );
   }
 

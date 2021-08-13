@@ -28,10 +28,22 @@
         <mat-icon>delete</mat-icon>
       </button>
       <button
+        *ngIf="!(favorites | async)?.photoIds?.includes(photo.id!)"
         mat-icon-button
         color="primary"
+        (click)="favorite(photo)"
         i18n-aria-label="@@flowFavoriteAriaLabel"
         aria-label="Add photo to favorites"
+      >
+        <mat-icon>favorite_border</mat-icon>
+      </button>
+      <button
+        *ngIf="(favorites | async)?.photoIds?.includes(photo.id!)"
+        mat-icon-button
+        color="primary"
+        (click)="unfavorite(photo)"
+        i18n-aria-label="@@flowUnfavoriteAriaLabel"
+        aria-label="Remove photo from favorites"
       >
         <mat-icon>favorite</mat-icon>
       </button>

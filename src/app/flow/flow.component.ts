@@ -8,6 +8,7 @@ import { filter, switchMap, take } from 'rxjs/operators';
 import { AuthService } from '../core/auth.service';
 import { PhotoService } from '../core/photo.service';
 import { DeletePhotoDialogComponent } from '../delete-photo-dialog/delete-photo-dialog.component';
+import { Favorites } from '../models/favorites';
 import { Photo } from '../models/photo';
 
 @Component({
@@ -19,6 +20,7 @@ import { Photo } from '../models/photo';
 export class FlowComponent {
   readonly user: Observable<firebase.User | null> = this._auth.user;
   readonly photos: Observable<Photo[]> = this._photoService.photos;
+  readonly favorites: Observable<Favorites | undefined> = this._photoService.favorites;
   readonly photoIdentity = (_index: number, item: Photo) => item.id;
 
   constructor(
@@ -55,5 +57,13 @@ export class FlowComponent {
             .onAction()
             .subscribe(() => this.deletePhoto(photo)),
       });
+  }
+
+  favorite(photo: Photo) {
+    this._photoService.favorite(photo).subscribe();
+  }
+
+  unfavorite(photo: Photo) {
+    this._photoService.unfavorite(photo).subscribe();
   }
 }

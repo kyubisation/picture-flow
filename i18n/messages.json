@@ -22,6 +22,7 @@
     "deletePhotoDeleteButton": " Delete ",
     "flowDeleteAriaLabel": "Delete this photo",
     "flowFavoriteAriaLabel": "Add photo to favorites",
+    "flowUnfavoriteAriaLabel": "Remove photo from favorites",
     "flowNoPhotos": " No photos yet. Add one by clicking the camera button above.\n",
     "deletePhotoRetryOnError": "Retry",
     "signInHeading": "Sign in",

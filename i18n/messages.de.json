@@ -22,6 +22,7 @@
     "deletePhotoDeleteButton": " Löschen ",
     "flowDeleteAriaLabel": "Lösche dieses Foto",
     "flowFavoriteAriaLabel": "Foto zu deinen Favoriten hinzufügen",
+    "flowUnfavoriteAriaLabel": "Foto von deinen Favoriten entfernen",
     "flowNoPhotos": " Noch keine Fotos vorhanden. Füge eines hinzu, indem du oben auf den Kamera-Button klickst.\n",
     "deletePhotoRetryOnError": "Neu versuchen",
     "signInHeading": "Anmelden",
