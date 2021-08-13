@@ -7,7 +7,6 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { MatChipsModule } from '@angular/material/chips';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -47,7 +46,6 @@ import { SignInComponent } from './sign-in/sign-in.component';
     AngularFireStorageModule,
     MatButtonModule,
     MatCardModule,
-    MatChipsModule,
     MatDialogModule,
     MatIconModule,
     MatInputModule,

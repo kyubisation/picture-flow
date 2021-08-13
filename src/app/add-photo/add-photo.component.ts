@@ -1,14 +1,6 @@
 import { COMMA, ENTER, SPACE } from '@angular/cdk/keycodes';
 import { ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import {
-  AbstractControl,
-  FormArray,
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
-import { MatChipInputEvent } from '@angular/material/chips';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -26,7 +18,6 @@ export class AddPhotoComponent implements OnInit {
   readonly separatorKeysCodes = [ENTER, COMMA, SPACE] as const;
   @ViewChild('photoInput', { static: true }) photoInput!: ElementRef<HTMLInputElement>;
   form: FormGroup;
-  tags = new FormArray([]);
   photoContent: Observable<string | undefined>;
   uploadProgress: Observable<number | undefined>;
 
@@ -44,27 +35,11 @@ export class AddPhotoComponent implements OnInit {
     this.form = formBuilder.group({
       file: [undefined, Validators.required],
       description: ['', Validators.maxLength(200)],
-      tags: this.tags,
     });
   }
 
   ngOnInit(): void {
     this.photoInput.nativeElement.click();
-  }
-
-  addTag(event: MatChipInputEvent) {
-    const value = (event.value || '').trim();
-    if (!value || this.tags.controls.some((c) => c.value === value)) {
-      event.chipInput!.clear();
-      return;
-    }
-
-    this.tags.push(new FormControl(value));
-    event.chipInput!.clear();
-  }
-
-  removeTag(tag: AbstractControl) {
-    this.tags.removeAt(this.tags.controls.findIndex((c) => c.value === tag.value));
   }
 
   addPhoto() {

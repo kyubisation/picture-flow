@@ -36,26 +36,6 @@
       >
     </mat-form-field>
 
-    <mat-form-field class="example-chip-list">
-      <mat-label i18n="@@addPhotoTags">Tags (optional)</mat-label>
-      <mat-chip-list #chipList aria-label="Photo tags">
-        <mat-chip *ngFor="let tag of tags.controls" removable (removed)="removeTag(tag)">
-          {{ tag.value }}
-          <mat-icon matChipRemove>cancel</mat-icon>
-        </mat-chip>
-        <input
-          i18n-placeholder="@@addPhotoAddTagPlaceholder"
-          placeholder="Add tag..."
-          [disabled]="tags.controls.length >= 5"
-          [matChipInputFor]="chipList"
-          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-          matChipInputAddOnBlur
-          (matChipInputTokenEnd)="addTag($event)"
-        />
-      </mat-chip-list>
-      <mat-hint i18n="@@addPhotoMaxTagsHint">Add up to five tags</mat-hint>
-    </mat-form-field>
-
     <button type="submit" mat-raised-button color="primary" i18n="@@addPhotoSubmitButton">
       Save photo
     </button>

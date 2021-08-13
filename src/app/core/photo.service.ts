@@ -61,7 +61,6 @@ export class PhotoService {
       customMetadata: {
         author: user.displayName || user.uid,
         description: photo.description,
-        tags: photo.tags.join(', '),
       },
     });
     return { fileRef, uploadTask };
@@ -71,7 +70,6 @@ export class PhotoService {
     return this._photoCollection.add({
       created: Date.now(),
       description: photo.description,
-      tags: photo.tags,
       url,
       userId: user.uid,
       userName: user.displayName || user.uid,

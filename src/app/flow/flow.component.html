@@ -13,17 +13,8 @@
       [src]="photo.url"
       (click)="openAsFullscreen($event)"
     />
-    <mat-card-content *ngIf="photo.description || photo.tags?.length">
-      <p *ngIf="photo.description">
-        {{ photo.description }}
-      </p>
-      <mat-chip-list
-        *ngIf="photo.tags?.length"
-        i18n-aria-label="@@flowTagAriaLabel"
-        aria-label="Tags for this photo"
-      >
-        <mat-chip *ngFor="let tag of photo.tags">{{ tag }}</mat-chip>
-      </mat-chip-list>
+    <mat-card-content *ngIf="photo.description">
+      <p>{{ photo.description }}</p>
     </mat-card-content>
     <mat-card-actions align="end">
       <button
