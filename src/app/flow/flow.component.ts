@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { filter, switchMap, take } from 'rxjs/operators';
 
 import { AuthService } from '../core/auth.service';
+import { FavoritesService } from '../core/favorites.service';
 import { PhotoService } from '../core/photo.service';
 import { DeletePhotoDialogComponent } from '../delete-photo-dialog/delete-photo-dialog.component';
 import { Favorites } from '../models/favorites';
@@ -20,11 +21,14 @@ import { Photo } from '../models/photo';
 export class FlowComponent {
   readonly user: Observable<firebase.User | null> = this._auth.user;
   readonly photos: Observable<Photo[]> = this._photoService.photos;
-  readonly favorites: Observable<Favorites | undefined> = this._photoService.favorites;
+  readonly favorites: Observable<Favorites | undefined> = this._favoritesService.favorites;
+  readonly hasPrevious: Observable<boolean> = this._photoService.hasPrevious;
+  readonly hasNext: Observable<boolean> = this._photoService.hasNext;
   readonly photoIdentity = (_index: number, item: Photo) => item.id;
 
   constructor(
     private _photoService: PhotoService,
+    private _favoritesService: FavoritesService,
     private _auth: AuthService,
     private _dialog: MatDialog,
     private _snackBar: MatSnackBar
@@ -60,10 +64,18 @@ export class FlowComponent {
   }
 
   favorite(photo: Photo) {
-    this._photoService.favorite(photo).subscribe();
+    this._favoritesService.favorite(photo).subscribe();
   }
 
   unfavorite(photo: Photo) {
-    this._photoService.unfavorite(photo).subscribe();
+    this._favoritesService.unfavorite(photo).subscribe();
+  }
+
+  showPrevious() {
+    this._photoService.previous();
+  }
+
+  showMore() {
+    this._photoService.next();
   }
 }

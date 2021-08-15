@@ -1,11 +1,21 @@
 @use '~@angular/material/core/style/variables' as variables;
 
-:host {
+.flow-gallery {
   display: grid;
   grid-template-columns: repeat(auto-fill, 20rem);
   grid-template-rows: repeat(auto-fill, auto);
   grid-row-gap: 1rem;
   grid-column-gap: 1rem;
+}
+
+.previous {
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.next {
+  margin-top: 1rem;
+  width: 100%;
 }
 
 .no-photos {
@@ -19,7 +29,7 @@
 
 // max-width: 2rem (padding main) + 2 * 20rem (column width) + 0.5rem (grid gap)
 @media (max-width: 42.49rem) {
-  :host {
+  .flow-gallery {
     grid-template-columns: 100%;
   }
 }

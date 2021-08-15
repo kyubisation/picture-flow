@@ -1,55 +1,77 @@
-<div *ngFor="let photo of photos | async; trackBy: photoIdentity">
-  <mat-card class="photo-card">
-    <mat-card-header>
-      <div mat-card-avatar>
-        <img class="avatar" [src]="photo.userPhotoURL" />
-      </div>
-      <mat-card-title>{{ photo.userName }}</mat-card-title>
-      <mat-card-subtitle>{{ photo.created | date: 'short' }}</mat-card-subtitle>
-    </mat-card-header>
-    <img
-      mat-card-image
-      class="preview-image"
-      [src]="photo.url"
-      (click)="openAsFullscreen($event)"
-    />
-    <mat-card-content *ngIf="photo.description">
-      <p>{{ photo.description }}</p>
-    </mat-card-content>
-    <mat-card-actions align="end">
-      <button
-        *ngIf="photo.userId === (user | async)?.uid"
-        mat-icon-button
-        color="warn"
-        (click)="deletePhoto(photo)"
-        i18n-aria-label="@@flowDeleteAriaLabel"
-        aria-label="Delete this photo"
-      >
-        <mat-icon>delete</mat-icon>
-      </button>
-      <button
-        *ngIf="!(favorites | async)?.photoIds?.includes(photo.id!)"
-        mat-icon-button
-        color="primary"
-        (click)="favorite(photo)"
-        i18n-aria-label="@@flowFavoriteAriaLabel"
-        aria-label="Add photo to favorites"
-      >
-        <mat-icon>favorite_border</mat-icon>
-      </button>
-      <button
-        *ngIf="(favorites | async)?.photoIds?.includes(photo.id!)"
-        mat-icon-button
-        color="primary"
-        (click)="unfavorite(photo)"
-        i18n-aria-label="@@flowUnfavoriteAriaLabel"
-        aria-label="Remove photo from favorites"
-      >
-        <mat-icon>favorite</mat-icon>
-      </button>
-    </mat-card-actions>
-  </mat-card>
+<button
+  *ngIf="hasPrevious | async"
+  mat-raised-button
+  type="button"
+  class="previous"
+  (click)="showPrevious()"
+  i18n="@@flowShowPreviousButton"
+>
+  Show previous
+</button>
+<div class="flow-gallery">
+  <div *ngFor="let photo of photos | async; trackBy: photoIdentity">
+    <mat-card class="photo-card">
+      <mat-card-header>
+        <div mat-card-avatar>
+          <img class="avatar" [src]="photo.userPhotoURL" />
+        </div>
+        <mat-card-title>{{ photo.userName }}</mat-card-title>
+        <mat-card-subtitle>{{ photo.created | date: 'short' }}</mat-card-subtitle>
+      </mat-card-header>
+      <img
+        mat-card-image
+        class="preview-image"
+        [src]="photo.resizedUrl || photo.url"
+        (click)="openAsFullscreen($event)"
+      />
+      <mat-card-content *ngIf="photo.description">
+        <p>{{ photo.description }}</p>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <button
+          *ngIf="photo.userId === (user | async)?.uid"
+          mat-icon-button
+          color="warn"
+          (click)="deletePhoto(photo)"
+          i18n-aria-label="@@flowDeleteAriaLabel"
+          aria-label="Delete this photo"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+        <button
+          *ngIf="!(favorites | async)?.photoIds?.includes(photo.id!)"
+          mat-icon-button
+          color="primary"
+          (click)="favorite(photo)"
+          i18n-aria-label="@@flowFavoriteAriaLabel"
+          aria-label="Add photo to favorites"
+        >
+          <mat-icon>favorite_border</mat-icon>
+        </button>
+        <button
+          *ngIf="(favorites | async)?.photoIds?.includes(photo.id!)"
+          mat-icon-button
+          color="primary"
+          (click)="unfavorite(photo)"
+          i18n-aria-label="@@flowUnfavoriteAriaLabel"
+          aria-label="Remove photo from favorites"
+        >
+          <mat-icon>favorite</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
 </div>
+<button
+  *ngIf="hasNext | async"
+  mat-raised-button
+  type="button"
+  class="next"
+  (click)="showMore()"
+  i18n="@@flowShowMoreButton"
+>
+  Show more
+</button>
 
 <div *ngIf="(photos | async)?.length === 0" class="no-photos" i18n="@@flowNoPhotos">
   No photos yet. Add one by clicking the camera button above.

@@ -1,10 +1,6 @@
 <h1 i18n="@@addPhotoTitle">Add a photo</h1>
 
-<form
-  [formGroup]="form"
-  (ngSubmit)="addPhoto()"
-  [class.uploading]="(uploadProgress | async) !== undefined"
->
+<form [formGroup]="form" (ngSubmit)="addPhoto()" [class.uploading]="uploadProgress | async">
   <input
     #photoInput
     type="file"
@@ -43,9 +39,8 @@
 </form>
 
 <mat-progress-bar
-  *ngIf="(uploadProgress | async) !== undefined"
-  mode="determinate"
-  [value]="uploadProgress | async"
+  *ngIf="uploadProgress | async"
+  mode="indeterminate"
   i18n-aria-label="@@addPhotoProgressAriaLabel"
   aria-label="Photo is being added"
 ></mat-progress-bar>

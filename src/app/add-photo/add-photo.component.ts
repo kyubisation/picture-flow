@@ -19,10 +19,10 @@ export class AddPhotoComponent implements OnInit {
   @ViewChild('photoInput', { static: true }) photoInput!: ElementRef<HTMLInputElement>;
   form: FormGroup;
   photoContent: Observable<string | undefined>;
-  uploadProgress: Observable<number | undefined>;
+  uploadProgress: Observable<boolean>;
 
   private _photoContent = new BehaviorSubject<string | undefined>(undefined);
-  private _uploadProgress = new BehaviorSubject<number | undefined>(undefined);
+  private _uploadProgress = new BehaviorSubject<boolean>(false);
 
   constructor(
     private _router: Router,
@@ -47,15 +47,16 @@ export class AddPhotoComponent implements OnInit {
       return;
     }
 
+    this._uploadProgress.next(true);
     const photo: PartialPhoto = this.form.value;
     this._photoService.add(photo).subscribe({
-      next: (v) => this._uploadProgress.next(v),
       complete: () => {
-        this._uploadProgress.next(undefined);
+        this._uploadProgress.next(false);
+        this._photoService.reset();
         this._router.navigate(['/']);
       },
       error: (e) => {
-        this._uploadProgress.next(undefined);
+        this._uploadProgress.next(false);
         this._snackBar
           .open(`${e}`, $localize`:@@addPhotoRetryOnError:Retry`, { duration: 4000 })
           .onAction()
