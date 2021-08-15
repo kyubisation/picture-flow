@@ -30,7 +30,6 @@
     "signInHeading": "Sign in",
     "signInWithGoogleMessage": "Sign in with Google",
     "signInWithFacebookMessage": "Sign in with Facebook",
-    "signInWithTwitterMessage": "Sign in with Twitter",
-    "signInWithMicrosoftMessage": "Sign in with Microsoft"
+    "signInWithTwitterMessage": "Sign in with Twitter"
   }
 }

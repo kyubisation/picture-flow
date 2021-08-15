@@ -32,11 +32,6 @@ export class AuthService {
     return this._signIn(provider);
   }
 
-  signInWithMicrosoft() {
-    const provider = new firebase.auth.OAuthProvider('microsoft.com');
-    return this._signIn(provider);
-  }
-
   signOut() {
     return this._firebaseAuth.signOut();
   }

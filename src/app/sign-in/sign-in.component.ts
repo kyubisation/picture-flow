@@ -22,8 +22,4 @@ export class SignInComponent {
   signInWithTwitter() {
     this.auth.signInWithTwitter();
   }
-
-  signInWithMicrosoft() {
-    this.auth.signInWithMicrosoft();
-  }
 }
