@@ -1,5 +1,5 @@
 import { COMMA, ENTER, SPACE } from '@angular/cdk/keycodes';
-import { ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -14,9 +14,8 @@ import { PartialPhoto } from '../models/partial-photo';
   styleUrls: ['./add-photo.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AddPhotoComponent implements OnInit {
+export class AddPhotoComponent {
   readonly separatorKeysCodes = [ENTER, COMMA, SPACE] as const;
-  @ViewChild('photoInput', { static: true }) photoInput!: ElementRef<HTMLInputElement>;
   form: FormGroup;
   photoContent: Observable<string | undefined>;
   uploadProgress: Observable<boolean>;
@@ -36,10 +35,6 @@ export class AddPhotoComponent implements OnInit {
       file: [undefined, Validators.required],
       description: ['', Validators.maxLength(200)],
     });
-  }
-
-  ngOnInit(): void {
-    this.photoInput.nativeElement.click();
   }
 
   addPhoto() {
@@ -65,8 +60,9 @@ export class AddPhotoComponent implements OnInit {
     });
   }
 
-  extractPhotoContent() {
-    const file = this.photoInput.nativeElement.files?.[0];
+  extractPhotoContent(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    const file = inputElement.files?.[0];
     this.form.get('file')!.setValue(file);
     if (!file) {
       this._photoContent.next(undefined);

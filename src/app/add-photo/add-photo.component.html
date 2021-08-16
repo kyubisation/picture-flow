@@ -5,9 +5,8 @@
     #photoInput
     type="file"
     accept="image/*"
-    capture="environment"
     class="photo-input"
-    (change)="extractPhotoContent()"
+    (change)="extractPhotoContent($event)"
   />
   <button type="button" mat-raised-button color="primary" (click)="photoInput.click()">
     <mat-icon inline>add_a_photo</mat-icon>&nbsp;
