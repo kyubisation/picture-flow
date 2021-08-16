@@ -1,5 +1,5 @@
 <mat-toolbar color="primary" role="heading">
-  <span class="toolbar-title">{{ title }}</span>
+  <a routerLink="/" class="toolbar-title">{{ title }}</a>
   <span class="separator"></span>
   <ng-container *ngIf="user | async as currentUser">
     <a
@@ -37,6 +37,7 @@
       <button mat-menu-item (click)="signOut()" i18n="@@signOutMessage">
         Sign out as {{ currentUser.displayName }}
       </button>
+      <a mat-menu-item routerLink="/favorites" i18n="@@favoritesLink">Favorites</a>
       <button mat-menu-item [matMenuTriggerFor]="language" i18n="@@languageSelection">
         Language
       </button>

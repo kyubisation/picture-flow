@@ -24,7 +24,9 @@ import { AddPhotoComponent } from './add-photo/add-photo.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DeletePhotoDialogComponent } from './delete-photo-dialog/delete-photo-dialog.component';
+import { FavoritesFlowComponent } from './favorites-flow/favorites-flow.component';
 import { FlowComponent } from './flow/flow.component';
+import { PhotoCardComponent } from './photo-card/photo-card.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 
 @NgModule({
@@ -34,6 +36,8 @@ import { SignInComponent } from './sign-in/sign-in.component';
     SignInComponent,
     AddPhotoComponent,
     DeletePhotoDialogComponent,
+    PhotoCardComponent,
+    FavoritesFlowComponent,
   ],
   imports: [
     BrowserModule,

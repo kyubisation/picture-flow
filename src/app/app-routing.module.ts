@@ -3,6 +3,7 @@ import { canActivate, redirectLoggedInTo, redirectUnauthorizedTo } from '@angula
 import { RouterModule, Routes } from '@angular/router';
 
 import { AddPhotoComponent } from './add-photo/add-photo.component';
+import { FavoritesFlowComponent } from './favorites-flow/favorites-flow.component';
 import { FlowComponent } from './flow/flow.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 
@@ -11,6 +12,11 @@ const redirectLoggedInToLandingPage = () => redirectLoggedInTo(['']);
 
 const routes: Routes = [
   { path: '', component: FlowComponent, ...canActivate(redirectUnauthorizedToLogin) },
+  {
+    path: 'favorites',
+    component: FavoritesFlowComponent,
+    ...canActivate(redirectUnauthorizedToLogin),
+  },
   { path: 'sign-in', component: SignInComponent, ...canActivate(redirectLoggedInToLandingPage) },
   { path: 'add-photo', component: AddPhotoComponent, ...canActivate(redirectUnauthorizedToLogin) },
 ];
