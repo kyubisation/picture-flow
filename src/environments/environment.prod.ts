@@ -1,4 +1,6 @@
-export const environment = {
+import { PictureFlowConfiguration } from './environment.model';
+
+export const environment: PictureFlowConfiguration = {
   production: true,
   firebase: {
     apiKey: '<your-key>',
