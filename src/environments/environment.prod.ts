@@ -1,15 +1,7 @@
 import { PictureFlowConfiguration } from './environment.model';
+import { environmentPartial } from './environment.shared';
 
 export const environment: PictureFlowConfiguration = {
   production: true,
-  firebase: {
-    apiKey: '<your-key>',
-    authDomain: '<your-project-authdomain>',
-    databaseURL: '<your-database-URL>',
-    projectId: '<your-project-id>',
-    storageBucket: '<your-storage-bucket>',
-    messagingSenderId: '<your-messaging-sender-id>',
-    appId: '<your-app-id>',
-    measurementId: '<your-measurement-id>',
-  },
+  ...environmentPartial,
 };
