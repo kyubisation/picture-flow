@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import firebase from 'firebase/app';
 import { Observable, forkJoin, of } from 'rxjs';
-import { filter, map, switchMap, take } from 'rxjs/operators';
+import { catchError, filter, map, mapTo, switchMap, take } from 'rxjs/operators';
 
 import { Favorites } from '../models/favorites';
 import { Photo } from '../models/photo';
@@ -34,7 +34,12 @@ export class FavoritesService {
             collection
               .doc(id)
               .get()
-              .pipe(map((p) => ({ ...p.data(), id } as Photo)))
+              .pipe(
+                switchMap((p) =>
+                  p.data() ? of({ ...p.data(), id } as Photo) : this.unfavorite(id)
+                ),
+                catchError(() => this.unfavorite(id))
+              )
           )
         ).pipe(map((favorites) => favorites.filter((f): f is Photo => !!f)));
       })
@@ -54,14 +59,16 @@ export class FavoritesService {
     );
   }
 
-  unfavorite(photo: Photo): Observable<void> {
+  unfavorite(photo: Photo | string): Observable<void> {
+    const id = typeof photo === 'string' ? photo : photo.id;
     return forkJoin([this._favoriteDocument.pipe(take(1)), this.favoriteIds.pipe(take(1))]).pipe(
       switchMap(([doc, favorites]) =>
         doc.set({
           ...favorites,
-          photoIds: (favorites?.photoIds || []).filter((v) => v !== photo.id),
+          photoIds: (favorites?.photoIds || []).filter((v) => v !== id),
         })
-      )
+      ),
+      mapTo(undefined)
     );
   }
 }
