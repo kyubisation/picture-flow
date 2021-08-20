@@ -1,0 +1,45 @@
+<h1 i18n="@@addPhotoTitle">Add a photo</h1>
+
+<form [formGroup]="form" (ngSubmit)="addPhoto()" [class.uploading]="uploadProgress | async">
+  <input
+    #photoInput
+    type="file"
+    accept="image/*"
+    class="photo-input"
+    (change)="extractPhotoContent($event)"
+  />
+  <button type="button" mat-raised-button color="primary" (click)="photoInput.click()">
+    <mat-icon inline>add_a_photo</mat-icon>&nbsp;
+    <ng-container *ngIf="!form.get('file')!.value" i18n="@@addPhotoSelectPhotoButton"
+      >Select a photo</ng-container
+    >
+    <ng-container *ngIf="form.get('file')!.value" i18n="@@addPhotoChangePhotoButton"
+      >Change selected photo</ng-container
+    >
+  </button>
+
+  <ng-container *ngIf="form.get('file')!.value">
+    <img class="preview" [src]="photoContent | async" />
+
+    <mat-form-field>
+      <mat-label i18n="@@addPhotoDescription">Description (optional)</mat-label>
+      <textarea matInput formControlName="description"></textarea>
+      <mat-error
+        *ngIf="form.get('description')!.errors?.maxlength as maxlengthError"
+        i18n="@@addPhotoDescriptionMaxLengthError"
+        >Max length of {{ maxlengthError.requiredLength }} exceeded</mat-error
+      >
+    </mat-form-field>
+
+    <button type="submit" mat-raised-button color="primary" i18n="@@addPhotoSubmitButton">
+      Save photo
+    </button>
+  </ng-container>
+</form>
+
+<mat-progress-bar
+  *ngIf="uploadProgress | async"
+  mode="indeterminate"
+  i18n-aria-label="@@addPhotoProgressAriaLabel"
+  aria-label="Photo is being added"
+></mat-progress-bar>

@@ -2,15 +2,23 @@ import { NgModule } from '@angular/core';
 import { canActivate, redirectLoggedInTo, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 import { RouterModule, Routes } from '@angular/router';
 
+import { AddPhotoComponent } from './add-photo/add-photo.component';
+import { FavoritesFlowComponent } from './favorites-flow/favorites-flow.component';
 import { FlowComponent } from './flow/flow.component';
-import { LoginComponent } from './login/login.component';
+import { SignInComponent } from './sign-in/sign-in.component';
 
-const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['sign-in']);
 const redirectLoggedInToLandingPage = () => redirectLoggedInTo(['']);
 
 const routes: Routes = [
   { path: '', component: FlowComponent, ...canActivate(redirectUnauthorizedToLogin) },
-  { path: 'login', component: LoginComponent, ...canActivate(redirectLoggedInToLandingPage) },
+  {
+    path: 'favorites',
+    component: FavoritesFlowComponent,
+    ...canActivate(redirectUnauthorizedToLogin),
+  },
+  { path: 'sign-in', component: SignInComponent, ...canActivate(redirectLoggedInToLandingPage) },
+  { path: 'add-photo', component: AddPhotoComponent, ...canActivate(redirectUnauthorizedToLogin) },
 ];
 
 @NgModule({

@@ -1,0 +1,10 @@
+<div class="flow-gallery">
+  <app-photo-card
+    *ngFor="let photo of photos | async; trackBy: photoIdentity"
+    [photo]="photo"
+  ></app-photo-card>
+</div>
+
+<div *ngIf="(photos | async)?.length === 0" class="no-photos" i18n="@@favoritesNoPhotos">
+  No favorites yet. Add some by clicking on the heart buttons below photos.
+</div>

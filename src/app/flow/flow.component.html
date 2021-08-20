@@ -1,1 +1,30 @@
-<p>flow works!</p>
+<button
+  *ngIf="hasPrevious | async"
+  mat-raised-button
+  type="button"
+  class="previous"
+  (click)="showPrevious()"
+  i18n="@@flowShowPreviousButton"
+>
+  Show previous
+</button>
+<div class="flow-gallery">
+  <app-photo-card
+    *ngFor="let photo of photos | async; trackBy: photoIdentity"
+    [photo]="photo"
+  ></app-photo-card>
+</div>
+<button
+  *ngIf="hasNext | async"
+  mat-raised-button
+  type="button"
+  class="next"
+  (click)="showMore()"
+  i18n="@@flowShowMoreButton"
+>
+  Show more
+</button>
+
+<div *ngIf="(photos | async)?.length === 0" class="no-photos" i18n="@@flowNoPhotos">
+  No photos yet. Add one by clicking the camera button above.
+</div>

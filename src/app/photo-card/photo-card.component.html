@@ -1,0 +1,50 @@
+<mat-card class="photo-card">
+  <mat-card-header>
+    <div mat-card-avatar>
+      <img class="avatar" [src]="photo.userPhotoURL" />
+    </div>
+    <mat-card-title>{{ photo.userName }}</mat-card-title>
+    <mat-card-subtitle>{{ photo.created | date: 'short' }}</mat-card-subtitle>
+  </mat-card-header>
+  <img
+    mat-card-image
+    class="preview-image"
+    [src]="photo.resizedUrl || photo.url"
+    (click)="openAsFullscreen($event)"
+  />
+  <mat-card-content *ngIf="photo.description">
+    <p>{{ photo.description }}</p>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <button
+      *ngIf="photo.userId === (user | async)?.uid"
+      mat-icon-button
+      color="warn"
+      (click)="deletePhoto(photo)"
+      i18n-aria-label="@@flowDeleteAriaLabel"
+      aria-label="Delete this photo"
+    >
+      <mat-icon>delete</mat-icon>
+    </button>
+    <button
+      *ngIf="!(favoriteIds | async)?.photoIds?.includes(photo.id!)"
+      mat-icon-button
+      color="primary"
+      (click)="favorite(photo)"
+      i18n-aria-label="@@flowFavoriteAriaLabel"
+      aria-label="Add photo to favoriteIds"
+    >
+      <mat-icon>favorite_border</mat-icon>
+    </button>
+    <button
+      *ngIf="(favoriteIds | async)?.photoIds?.includes(photo.id!)"
+      mat-icon-button
+      color="primary"
+      (click)="unfavorite(photo)"
+      i18n-aria-label="@@flowUnfavoriteAriaLabel"
+      aria-label="Remove photo from favoriteIds"
+    >
+      <mat-icon>favorite</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>

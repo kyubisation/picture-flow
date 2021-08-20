@@ -1,0 +1,24 @@
+<div class="sign-in-box mat-elevation-z8">
+  <h1 i18n="@@signInHeading">Sign in</h1>
+
+  <button mat-raised-button type="button" class="sign-in-button" (click)="signInWithGoogle()">
+    <span class="sign-in-button-alignment">
+      <mat-icon svgIcon="auth:google"></mat-icon>
+      <span i18n="@@signInWithGoogleMessage">Sign in with Google</span>
+    </span>
+  </button>
+
+  <button mat-raised-button type="button" class="sign-in-button" (click)="signInWithFacebook()">
+    <span class="sign-in-button-alignment">
+      <mat-icon svgIcon="auth:facebook"></mat-icon>
+      <span i18n="@@signInWithFacebookMessage">Sign in with Facebook</span>
+    </span>
+  </button>
+
+  <button mat-raised-button type="button" class="sign-in-button" (click)="signInWithTwitter()">
+    <span class="sign-in-button-alignment">
+      <mat-icon svgIcon="auth:twitter"></mat-icon>
+      <span i18n="@@signInWithTwitterMessage">Sign in with Twitter</span>
+    </span>
+  </button>
+</div>

@@ -1,1 +1,66 @@
-<router-outlet></router-outlet>
+<mat-toolbar color="primary" role="heading">
+  <a routerLink="/" class="toolbar-title">{{ title }}</a>
+  <span class="separator"></span>
+  <ng-container *ngIf="user | async as currentUser">
+    <a
+      mat-mini-fab
+      routerLink="/"
+      routerLinkActive="hide"
+      [routerLinkActiveOptions]="{ exact: true }"
+      class="home"
+      i18n-aria-label="@@homeLinkAriaLabel"
+      aria-label="Go back to the starting page"
+    >
+      <mat-icon>home</mat-icon>
+    </a>
+    <a
+      mat-mini-fab
+      routerLink="/add-photo"
+      routerLinkActive="hide"
+      class="add-photo"
+      i18n-aria-label="@@addPhotoAriaLabel"
+      aria-label="Add a new photo"
+    >
+      <mat-icon>add_a_photo</mat-icon>
+    </a>
+    <button
+      type="button"
+      class="user-icon-button"
+      [matMenuTriggerFor]="userMenu"
+      i18n-aria-label="@@toggleUserMenu"
+      aria-label="Toggle user menu"
+    >
+      <img class="user-icon" [src]="currentUser.photoURL" [attr.alt]="currentUser.displayName" />
+      <mat-icon>expand_more</mat-icon>
+    </button>
+    <mat-menu #userMenu="matMenu">
+      <button mat-menu-item (click)="signOut()" i18n="@@signOutMessage">
+        Sign out as {{ currentUser.displayName }}
+      </button>
+      <a mat-menu-item routerLink="/favorites" i18n="@@favoritesLink">Favorites</a>
+      <button mat-menu-item [matMenuTriggerFor]="language" i18n="@@languageSelection">
+        Language
+      </button>
+    </mat-menu>
+  </ng-container>
+  <ng-container *ngIf="(user | async) === null">
+    <button
+      type="button"
+      mat-mini-fab
+      [matMenuTriggerFor]="language"
+      i18n-aria-label="@@signInLanguageAriaLabel"
+      aria-label="Change language"
+    >
+      <mat-icon>translate</mat-icon>
+    </button>
+  </ng-container>
+  <mat-menu #language="matMenu">
+    <a href="/en" mat-menu-item>English</a>
+    <a href="/de" mat-menu-item>Deutsch</a>
+    <a href="/de-CH" mat-menu-item>Schwiizerdütsch</a>
+  </mat-menu>
+</mat-toolbar>
+
+<main>
+  <router-outlet></router-outlet>
+</main>

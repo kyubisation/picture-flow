@@ -1,0 +1,17 @@
+<h1 mat-dialog-title i18n="@@deletePhotoTitle">Delete your photo?</h1>
+<div mat-dialog-content>
+  <p i18n="@@deletePhotoMessage">Are you sure you want to delete the following photo?</p>
+  <img class="preview-image" [src]="photo.resizedUrl || photo.url" />
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close i18n="@@deletePhotoCancelButton">Cancel</button>
+  <button
+    mat-button
+    color="warn"
+    [mat-dialog-close]="photo"
+    cdkFocusInitial
+    i18n="@@deletePhotoDeleteButton"
+  >
+    Delete
+  </button>
+</div>
