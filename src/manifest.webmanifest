@@ -1,0 +1,17 @@
+{
+  "name": "picture-flow",
+  "short_name": "picture-flow",
+  "theme_color": "#9c27b0",
+  "background_color": "#303030",
+  "display": "standalone",
+  "scope": "./",
+  "start_url": "./",
+  "icons": [
+    {
+      "src": "assets/material-camera.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable any"
+    }
+  ]
+}
